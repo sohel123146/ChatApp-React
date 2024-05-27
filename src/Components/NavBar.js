@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import {Nav,Stack} from 'react-bootstrap'
+import { AuthContext } from '../context/AuthContext'
 
 const NavBar = () => {
+    const { user, logoutUser } = useContext(AuthContext)
+
+    const handleClick = () =>{
+        logoutUser()
+    }
+
+      
+
   return (
     <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -18,17 +27,31 @@ const NavBar = () => {
             </ul>
             <Nav>
                 <Stack direction='horizontal' gap={1}>
-                <li className="nav-item">
-                    <NavLink className="nav-link text-light" aria-current="page" to="/login">Login</NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink className="nav-link text-light" aria-current="page" to="/signup">Signup</NavLink>
-                </li>
+                    {user && 
+                    <>
+                        <li className="nav-item">
+                            <NavLink className="nav-link text-light" aria-current="page" to="/login" onClick={handleClick}>Logout</NavLink>
+                        </li> 
+                    </>
+                    }
+                    {!user &&
+                    <>
+                        <li className="nav-item">
+                            <NavLink className="nav-link text-light" aria-current="page" to="/login">Login</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link text-light" aria-current="page" to="/signup">Signup</NavLink>
+                        </li>
+                    </>
+                    }
                 </Stack>
             </Nav>
             </div>
         </div>
         </nav>
+        <div className='user-details'>
+            {user && <p>Logged in as {user.name}</p>}
+        </div>
     </div>
   )
 }

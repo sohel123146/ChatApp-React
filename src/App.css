@@ -4,3 +4,12 @@ body{
   font-family: 'Nunito',sans-serif;
   background: rgb(40,40,40);
 }
+
+.user-details
+{
+  color:white;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  height:50px;
+}

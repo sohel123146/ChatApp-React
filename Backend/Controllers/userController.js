@@ -27,7 +27,7 @@ const registerUser = async (req, res) => {
     }
 
     if (!validator.isStrongPassword(password)) {
-      return res.status(400).json("invalid password");
+      return res.status(400).json("Password must be strong");
     }
 
     user = new userModel({ name, email, password }); //creating new user

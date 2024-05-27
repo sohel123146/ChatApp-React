@@ -1,23 +1,27 @@
 import './App.css';
-import { BrowserRouter,Routes,Route,Navigate } from 'react-router-dom';
+import { Routes,Route,Navigate } from 'react-router-dom';
 import Chat from './Pages/Chat';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import NavBar from './Components/NavBar';
+import { AuthContext } from './context/AuthContext';
+import { useContext } from 'react';
 
-function App() {
+
+function App() {  
+  const {user} = useContext(AuthContext)
   return (
-      <BrowserRouter>
+    <>
         <NavBar/>
         <div className="container text-light">
           <Routes>
-            <Route exact path='/' element={<Chat/>}></Route>
-            <Route exact path='/login' element={<Login/>}></Route>
-            <Route exact path='/signup' element={<Signup/>}></Route>
+            <Route exact path='/' element={user ? <Chat/> : <Login/>}></Route>
+            <Route exact path='/login' element={user ? <Chat/> : <Login/>}></Route>
+            <Route exact path='/signup' element={user ? <Chat/> : <Signup/>}></Route>
             <Route exact path='*' element={<Navigate to='/'/>}></Route>
           </Routes>
         </div>
-        </BrowserRouter>
+    </>
   );
 }
 
