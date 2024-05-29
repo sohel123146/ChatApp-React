@@ -6,12 +6,13 @@ import Signup from './Pages/Signup';
 import NavBar from './Components/NavBar';
 import { AuthContext } from './context/AuthContext';
 import { useContext } from 'react';
+import { ChatContextProvider } from './context/chatContext';
 
 
 function App() {  
   const {user} = useContext(AuthContext)
   return (
-    <>
+    <ChatContextProvider user={user}>  
         <NavBar/>
         <div className="container text-light">
           <Routes>
@@ -21,7 +22,7 @@ function App() {
             <Route exact path='*' element={<Navigate to='/'/>}></Route>
           </Routes>
         </div>
-    </>
+    </ChatContextProvider>
   );
 }
 
