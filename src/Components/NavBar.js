@@ -26,11 +26,11 @@ const NavBar = () => {
                 </li>
             </ul>
             <Nav>
-                <Stack direction='horizontal' gap={1}>
+                <Stack direction='horizontal' gap={1}> {/*condionally showing logout and login buttons on navbar*/}
                     {user && 
                     <>
                         <li className="nav-item">
-                            <NavLink className="nav-link text-light" aria-current="page" to="/login" onClick={handleClick}>Logout</NavLink>
+                            <NavLink className="nav-link text-light" aria-current="page" to="/login" onClick={handleClick}>Logout</NavLink>  
                         </li> 
                     </>
                     }
@@ -50,7 +50,7 @@ const NavBar = () => {
         </div>
         </nav>
         <div className='user-details'>
-            {user && <p>Logged in as {user.name}</p>}
+            {user && <p>Logged in as {user?.name}</p>}
         </div>
     </div>
   )

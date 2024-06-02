@@ -7,12 +7,14 @@ import NavBar from './Components/NavBar';
 import { AuthContext } from './context/AuthContext';
 import { useContext } from 'react';
 import { ChatContextProvider } from './context/chatContext';
+import PotentialChats from './Components/chat/PotentialChats';
 
 
 function App() {  
   const {user} = useContext(AuthContext)
   return (
-    <ChatContextProvider user={user}>  
+    <ChatContextProvider user={user}>
+      <PotentialChats/>  
         <NavBar/>
         <div className="container text-light">
           <Routes>
